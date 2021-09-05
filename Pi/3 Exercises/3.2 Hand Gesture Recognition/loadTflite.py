@@ -1,5 +1,5 @@
 import cv2
-import tensorflow
+from tflite_runtime.interpreter import Interpreter
 import utils
 import numpy as np
 import modelParams
@@ -9,7 +9,7 @@ mp_drawing = utils.mp_drawing
 
 actions = modelParams.actions
 
-interpreter = tensorflow.lite.Interpreter(model_path = "actionDetection.tflite")
+interpreter = Interpreter(model_path = "actionDetection.tflite")
 interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
@@ -84,15 +84,3 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
             break
     cap.release()
     cv2.destroyAllWindows()
-
-
-
-
-
-
-
-
-
-print(output_details)
-print(input_details)
-            
