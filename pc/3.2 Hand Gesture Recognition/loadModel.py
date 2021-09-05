@@ -12,7 +12,7 @@ mp_holistic = utils.mp_holistic
 mp_drawing = utils.mp_drawing
 
 #Load the model you've trained
-model = load_model('actionDetection')
+model = load_model("actionDetection")
 
 colors = [(245, 117, 16), (117, 245, 16), (16, 117, 245)]
 
@@ -42,7 +42,6 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
 
         # Make detections
         image, results = utils.mediapipe_detection(frame, holistic)
-        print(results)
 
         # Draw landmarks
         utils.draw_hand_landmarks(image, results)
@@ -54,7 +53,6 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
 
         if len(sequence) == 30:
             res = model.predict(np.expand_dims(sequence, axis=0))[0]
-            print(actions[np.argmax(res)])
             predictions.append(np.argmax(res))
 
             # Viz logic
