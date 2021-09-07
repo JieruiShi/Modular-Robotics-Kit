@@ -20,7 +20,6 @@ with open('labelmap.txt', 'rb') as f:
 img = Image.open(args.imagePath)
 
 imgArray = np.array(img.resize((192,192)))
-print(imgArray.shape)
 
 interpreter = Interpreter(model_path = 'food_classifier.tflite')
 
