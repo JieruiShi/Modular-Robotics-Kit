@@ -1,4 +1,4 @@
-import tensorflow as tf
+from tflite_runtime.interpreter import Interpreter
 from PIL import Image
 import numpy as np
 import argparse
@@ -22,7 +22,7 @@ img = Image.open(args.imagePath)
 imgArray = np.array(img.resize((192,192)))
 print(imgArray.shape)
 
-interpreter = tf.lite.Interpreter(model_path = 'food_classifier.tflite')
+interpreter = Interpreter(model_path = 'food_classifier.tflite')
 
 interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
